@@ -60,7 +60,18 @@ No duplicate values were identified. No NULL values were identified. These resul
 
 # 4. Referential Integrity
 
-*Pending investigation.*
+The foreign key relationships between the selected entities were validated.
+
+The following relationships were tested:
+
+- orders.user_id → users.id
+- order_items.order_id → orders.order_id
+- order_items.product_id → products.id
+- order_items.user_id → users.id
+
+No orphan records were identified.
+
+This confirms that the selected entities maintain referential integrity and can be safely joined during analytical transformations.
 
 ---
 
