@@ -83,7 +83,65 @@ This confirms that the selected entities maintain referential integrity and can 
 
 # 6. Domain Analysis
 
-*Pending investigation.*
+The main categorical columns of the selected entities were analyzed to identify their possible values and evaluate data consistency.
+
+## Orders
+
+The `status` column contains five standardized values:
+
+| Status | Records |
+|---------|---------:|
+| Shipped | 37,664 |
+| Complete | 31,085 |
+| Processing | 24,806 |
+| Cancelled | 18,854 |
+| Returned | 12,395 |
+
+No inconsistent spellings, unexpected values or capitalization issues were identified.
+
+---
+
+## Order Items
+
+The `status` column contains the same five standardized values found in the `orders` table.
+
+| Status | Records |
+|---------|---------:|
+| Shipped | 54,804 |
+| Complete | 44,926 |
+| Processing | 36,025 |
+| Cancelled | 27,387 |
+| Returned | 18,052 |
+
+The consistency between both transactional tables indicates that the order lifecycle is represented using a standardized domain.
+
+---
+
+## Users
+
+The `gender` column contains only two values.
+
+| Gender | Records |
+|---------|---------:|
+| F | 50,061 |
+| M | 49,939 |
+
+No NULL or unexpected values were identified.
+
+---
+
+## Products
+
+The `department` column contains two standardized values.
+
+| Department | Products |
+|------------|---------:|
+| Women | 15,989 |
+| Men | 13,131 |
+
+The `category` column contains **26 distinct categories**, all consistently named without duplicated values caused by spelling or capitalization differences.
+
+No domain inconsistencies were identified in the analyzed categorical columns.
 
 ---
 
