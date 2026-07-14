@@ -77,7 +77,62 @@ This confirms that the selected entities maintain referential integrity and can 
 
 # 5. Missing Values
 
-*Pending investigation.*
+The completeness of the main analytical fields was evaluated for all selected entities included in the analytical scope of this project.
+
+The following columns were analyzed:
+
+### Users
+
+- id
+- gender
+- age
+- created_at
+
+### Orders
+
+- order_id
+- user_id
+- status
+- created_at
+
+### Products
+
+- id
+- category
+- department
+- retail_price
+
+### Order Items
+
+- id
+- order_id
+- user_id
+- product_id
+- sale_price
+- status
+- created_at
+
+No NULL values were identified in any of the mandatory analytical fields.
+
+This confirms that the selected dataset provides complete information for all attributes required to support the analytical objectives of the project.
+
+### Operational Timestamp Fields
+
+The operational timestamp fields (`shipped_at`, `delivered_at`, and `returned_at`) were analyzed separately because NULL values are expected as part of the order lifecycle.
+
+The initial assessment measured the overall number of NULL values in each operational timestamp. A second validation grouped the records by order status to verify whether these NULL values were consistent with the expected business process.
+
+The analysis confirmed that:
+
+- **Processing** orders have not yet been shipped, delivered, or returned.
+- **Shipped** orders have been shipped but have not yet been delivered or returned.
+- **Complete** orders contain valid shipping and delivery timestamps, while `returned_at` remains NULL because the orders were not returned.
+- **Cancelled** orders did not progress through the logistics process, therefore all operational timestamps remain NULL.
+- **Returned** orders contain valid values for all operational timestamps, including the return timestamp.
+
+The observed NULL values are therefore consistent with the business workflow and do not represent data quality issues.
+
+Overall, the missing values analysis indicates that the dataset is complete for the analytical scope of this project and that the operational NULL values accurately reflect the different stages of the order lifecycle rather than inconsistencies in the data.
 
 ---
 
