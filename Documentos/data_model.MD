@@ -10,7 +10,7 @@ Only the entities required to support the commercial business objectives were in
 
 ## Operational Data Model
 
-> *(![data diagram](image.png))*
+![Data Diagram](Documentos/Data_schema.png)
 
 ---
 
