@@ -19,14 +19,18 @@ Business Rule
 -------------
 - Only completed sales are considered (status = 'Complete').
 - Revenue is calculated using the sale_price of each sold item.
-- Products are grouped by both product ID and product name to ensure unique
-- identification, since duplicate product names may exist in the dataset.
+- Products are grouped by both product ID and product name to ensure unique identification, since duplicate product names may exist in the dataset.
 - The result is limited to the Top 10 products ranked by revenue.
 
-Source Tables
--------------
-- order_items (fact table)
-- products (product dimension)
+Source
+------
+- analytics.vw_sales
+
+Notes
+-----
+This query uses the analytical view (vw_sales), created during Sprint 4,
+which consolidates sales, product and customer information into a single
+analytical layer.
 
 Output
 ------
@@ -39,10 +43,9 @@ The result is sorted from the highest to the lowest revenue.
 ===============================================================================
 */
 
-SELECT p.id AS product_id, p.name AS product_name, ROUND(SUM(od.sale_price),2) AS product_revenue
-FROM `bigquery-public-data.thelook_ecommerce.order_items` od
-JOIN `bigquery-public-data.thelook_ecommerce.products` p ON p.id = od.product_id
-WHERE od.status = 'Complete'
+SELECT product_id, product_name, ROUND(SUM(sale_price),2) AS product_revenue
+FROM `projeto-e-commerce-501019.analytics.vw_sales`
+WHERE status = 'Complete'
 GROUP BY product_id, product_name
 ORDER BY product_revenue DESC
 LIMIT 10;

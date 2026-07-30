@@ -21,10 +21,15 @@ Business Rule
 - Customers are uniquely identified by customer ID while their full name is displayed for readability.
 - The result is limited to the Top 10 customers ranked by revenue.
 
-Source Tables
--------------
-- order_items (fact table)
-- users (customer dimension)
+Source
+------
+- analytics.vw_sales
+
+Notes
+-----
+This query uses the analytical view (vw_sales), created during Sprint 4,
+which consolidates sales, product and customer information into a single
+analytical layer.
 
 Output
 ------
@@ -36,10 +41,9 @@ The result is sorted from the highest to the lowest revenue.
 ===============================================================================
 */
 
-SELECT CONCAT(u.first_name,' ', u.last_name) AS customer_name,ROUND(SUM(od.sale_price),2) AS customer_revenue
-FROM `bigquery-public-data.thelook_ecommerce.order_items`od
-JOIN `bigquery-public-data.thelook_ecommerce.users` u ON u.id = od.user_id
-WHERE od.status = 'Complete'
-GROUP BY u.id,u.first_name, u.last_name
+SELECT customer_name, ROUND(SUM(sale_price),2) AS customer_revenue
+FROM `projeto-e-commerce-501019.analytics.vw_sales`
+WHERE status = 'Complete'
+GROUP BY user_id, customer_name
 ORDER BY customer_revenue DESC
 LIMIT 10

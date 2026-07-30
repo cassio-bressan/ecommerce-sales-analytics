@@ -24,9 +24,19 @@ Business Rule
 - Orders are grouped by the month in which they were created.
 - One order is counted once.
 
-Source Tables
--------------
-- orders
+Source
+------
+- bigquery-public-data.thelook_ecommerce.orders
+
+Notes
+-----
+This query uses the transactional orders table instead of the analytical
+view (vw_sales).
+
+The objective of this analysis is to measure the operational volume of
+completed orders over time. Since this metric focuses on order lifecycle
+rather than sales enrichment with product and customer attributes, the
+transactional orders table is the most appropriate source.
 
 Output
 ------

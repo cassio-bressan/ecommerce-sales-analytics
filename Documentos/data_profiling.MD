@@ -199,7 +199,3 @@ The `category` column contains **26 distinct categories**, all consistently name
 No domain inconsistencies were identified in the analyzed categorical columns.
 
 ---
-
-# 7. Data Quality Summary
-
-*Pending completion.*

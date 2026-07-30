@@ -23,10 +23,15 @@ Business Rule
 - Revenue is aggregated at the country level.
 - All countries are included to provide a complete geographical view of the business.
 
-Source Tables
--------------
-- order_items (fact table)
-- users (customer dimension)
+Source
+------
+- analytics.vw_sales
+
+Notes
+-----
+This query uses the analytical view (vw_sales), created during Sprint 4,
+which consolidates sales, product and customer information into a single
+analytical layer.
 
 Output
 ------
@@ -38,9 +43,8 @@ The result is sorted from the highest to the lowest revenue.
 ===============================================================================
 */
 
-SELECT u.country AS country, ROUND(SUM(od.sale_price),2) AS country_revenue
-FROM `bigquery-public-data.thelook_ecommerce.order_items`od
-JOIN `bigquery-public-data.thelook_ecommerce.users` u ON u.id = od.user_id
-WHERE od.status = 'Complete'
-GROUP BY u.country
+SELECT country, ROUND(SUM(sale_price),2) AS country_revenue
+FROM `projeto-e-commerce-501019.analytics.vw_sales`
+WHERE status = 'Complete'
+GROUP BY country
 ORDER BY country_revenue DESC;

@@ -22,9 +22,18 @@ Business Rule
 - No status filtering is applied.
 - Each order is counted once according to its current status.
 
-Source Tables
--------------
-- orders
+Source
+------
+- bigquery-public-data.thelook_ecommerce.orders
+
+Notes
+-----
+This query uses the transactional orders table instead of the analytical
+view (vw_sales).
+
+The objective of this analysis is to monitor the operational order lifecycle,
+rather than sales performance. Therefore, the transactional table provides
+the most appropriate source for this business question.
 
 Output
 ------

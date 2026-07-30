@@ -21,10 +21,15 @@ Business Rule
 - Revenue is calculated using the sale_price of each sold item.
 - Revenue is aggregated at the department level.
 
-Source Tables
--------------
-- order_items (fact table)
-- products (product dimension)
+Source
+------
+- analytics.vw_sales
+
+Notes
+-----
+This query uses the analytical view (vw_sales), created during Sprint 4,
+which consolidates sales, product and customer information into a single
+analytical layer.
 
 Output
 ------
@@ -36,9 +41,8 @@ The result is sorted from the highest to the lowest revenue.
 ===============================================================================
 */
 
-SELECT p.department AS department, ROUND(SUM(od.sale_price),2) AS department_revenue
-FROM `bigquery-public-data.thelook_ecommerce.order_items` od
-JOIN `bigquery-public-data.thelook_ecommerce.products` p ON p.id = od.product_id
-WHERE od.status = 'Complete'
+SELECT department, ROUND(SUM(sale_price),2) AS department_revenue
+FROM `projeto-e-commerce-501019.analytics.vw_sales`
+WHERE status = 'Complete'
 GROUP BY department
 ORDER BY department_revenue DESC;
