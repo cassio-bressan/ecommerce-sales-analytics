@@ -10,7 +10,7 @@ Construir uma solução analítica para apoiar o gerente comercial de um e-comme
 
 - Google BigQuery
 - SQL
-- Looker Studio
+- Claude AI
 - DrawSQL
 
 ## Dataset
