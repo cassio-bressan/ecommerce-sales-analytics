@@ -74,7 +74,7 @@ SELECT
 -- ============================================================================
     EXTRACT(YEAR FROM od.created_at) AS order_year,
     EXTRACT(MONTH FROM od.created_at) AS order_month,
-    FORMAT_DATE('%Y-%m', DATE(od.created_at)) AS year_month,
+    DATE_TRUNC(DATE(order_created_at), MONTH) AS year_month,
 -- ============================================================================
 -- Product Information
 -- ============================================================================
