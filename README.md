@@ -427,9 +427,7 @@ The project uses the following technologies and tools:
 | ------------------- | ----------------------------------------------------------------- |
 | **Google BigQuery** | Data storage, analytical layer, SQL analysis, and validation      |
 | **SQL**             | Data profiling, validation, transformation, and business analysis |
-| **HTML**            | Dashboard structure                                               |
-| **CSS**             | Dashboard styling and visual design                               |
-| **JavaScript**      | Dashboard interactivity and visualization                         |
+| **Claude AI**       | Dashboard creation                                                |                               
 | **Git / GitHub**    | Version control and project documentation                         |
 
 ---
@@ -515,15 +513,21 @@ Demonstrates the BigQuery project, dataset, and location of the analytical view.
 
 Shows the schema of `vw_sales`, including the fields and data types used throughout the analysis.
 
+### Analytical Layer Definition
+
+`03_vw_sales_definition.png`
+
+Show the SQL code used to create the analytical layer `vw_sales`
+
 ### SQL Analysis
 
-`03_sql_query.png`
+`04_sql_query.png`
 
 Shows a representative business query executed against `vw_sales` and its resulting output.
 
 ### Data Validation
 
-`04_validation.png`
+`05_validation.png`
 
 Shows a representative data quality validation query and its results.
 
