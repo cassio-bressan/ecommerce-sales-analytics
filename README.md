@@ -10,7 +10,7 @@
 
 > **Executive Sales Dashboard** — a consolidated view of revenue, order volume, product performance, and geographic market performance.
 
-**[Open the Interactive Dashboard](Ativos/Dashboard/executive_sales_dashboard.html)**
+**[Open the Interactive Dashboard](https://cassio-bressan.github.io/ecommerce-sales-analytics/)**
 
 ---
 
