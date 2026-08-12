@@ -63,7 +63,9 @@ The project was developed with the following objectives:
 
 # Dataset
 
-The project uses an e-commerce transactional dataset containing order, product, customer, and geographic information.
+The project is based on the The Look E-commerce public dataset, provided through Google BigQuery.
+
+The dataset simulates an e-commerce business and contains information about customers, orders, products, order items, and related transactional data.
 
 The data was organized into an analytical view named `vw_sales`, stored in the `analytics` dataset within Google BigQuery.
 
