@@ -1,440 +1,440 @@
 # E-commerce Sales Analytics
 
-> An end-to-end data analytics project transforming e-commerce transactional data into actionable business insights through data profiling, SQL analysis, Google BigQuery, and an executive sales dashboard.
+> Um projeto de análise de dados de ponta a ponta que transforma dados transacionais de e-commerce em insights de negócio acionáveis por meio de data profiling, análise em SQL, Google BigQuery e um dashboard executivo de vendas.
 
 ---
 
-## Dashboard Preview
+## Prévia do Dashboard
 
 ![E-commerce Sales Dashboard](Ativos/Dashboard/executive_sales_dashboard.png)
 
-> **Executive Sales Dashboard** — a consolidated view of revenue, order volume, product performance, and geographic market performance.
+> **Executive Sales Dashboard** — uma visão consolidada de receita, volume de pedidos, desempenho de produtos e desempenho de mercados geográficos.
 
-**[Open the Interactive Dashboard](https://cassio-bressan.github.io/ecommerce-sales-analytics/)**
-
----
-
-## Project Overview
-
-This project presents an end-to-end **e-commerce sales analytics solution** developed to transform transactional data into reliable business information and decision-support insights.
-
-The project covers the complete analytical workflow, from **data profiling and quality validation** to the creation of an analytical layer in **Google BigQuery**, SQL-based business analysis, and the development of an executive dashboard.
-
-Rather than focusing only on visualization, the project was structured around clearly defined **business questions** related to revenue growth, product performance, and market performance.
-
-The final result is an analytical workflow that connects data quality, SQL analysis, and business-oriented visualization into a single portfolio project.
+**[Abrir o Dashboard Interativo](https://cassio-bressan.github.io/ecommerce-sales-analytics/)**
 
 ---
 
-## Business Problem
+## Visão Geral do Projeto
 
-E-commerce operations generate large volumes of transactional data, but raw transaction records alone do not provide an efficient view of overall business performance.
+Este projeto apresenta uma **solução de análise de vendas de e-commerce** de ponta a ponta, desenvolvida para transformar dados transacionais em informações de negócio confiáveis e insights de apoio à decisão.
 
-Decision-makers need to understand how revenue is evolving, which products and categories contribute most to sales, and how performance varies across different geographic markets.
+O projeto cobre todo o fluxo analítico, desde o **data profiling e a validação da qualidade dos dados** até a criação de uma camada analítica no **Google BigQuery**, a análise de negócio baseada em SQL e o desenvolvimento de um dashboard executivo.
 
-The challenge addressed by this project was therefore to transform transactional e-commerce data into a **reliable analytical layer and an executive-level view of sales performance**.
+Em vez de focar apenas na visualização, o projeto foi estruturado em torno de **perguntas de negócio** claramente definidas, relacionadas ao crescimento da receita, ao desempenho de produtos e ao desempenho de mercados.
 
-### Key Business Needs
-
-* Monitor revenue performance over time
-* Track completed order volume
-* Evaluate average ticket
-* Identify the categories generating the most revenue
-* Identify the products generating the most revenue
-* Compare revenue performance across countries
-* Analyze average ticket across different markets
-* Provide a consolidated dashboard for executive-level analysis
+O resultado final é um fluxo analítico que conecta qualidade de dados, análise em SQL e visualização orientada ao negócio em um único projeto de portfólio.
 
 ---
 
-## Project Objectives
+## Problema de Negócio
 
-The project was developed with the following objectives:
+Operações de e-commerce geram grandes volumes de dados transacionais, mas os registros brutos de transações, por si só, não oferecem uma visão eficiente do desempenho geral do negócio.
 
-* Build a structured analytical layer from e-commerce transactional data
-* Perform data profiling before business analysis
-* Validate data quality and data consistency
-* Develop SQL-based business metrics using Google BigQuery
-* Analyze sales performance across time, products, and geographic markets
-* Translate analytical results into an executive-oriented dashboard
-* Organize the complete analytical process into a reproducible portfolio project
+Os tomadores de decisão precisam entender como a receita está evoluindo, quais produtos e categorias mais contribuem para as vendas e como o desempenho varia entre diferentes mercados geográficos.
+
+O desafio abordado por este projeto foi, portanto, transformar dados transacionais de e-commerce em uma **camada analítica confiável e uma visão executiva do desempenho de vendas**.
+
+### Principais Necessidades de Negócio
+
+* Monitorar o desempenho da receita ao longo do tempo
+* Acompanhar o volume de pedidos concluídos
+* Avaliar o ticket médio
+* Identificar as categorias que geram mais receita
+* Identificar os produtos que geram mais receita
+* Comparar o desempenho de receita entre países
+* Analisar o ticket médio em diferentes mercados
+* Fornecer um dashboard consolidado para análise em nível executivo
+
+---
+
+## Objetivos do Projeto
+
+O projeto foi desenvolvido com os seguintes objetivos:
+
+* Construir uma camada analítica estruturada a partir de dados transacionais de e-commerce
+* Realizar data profiling antes da análise de negócio
+* Validar a qualidade e a consistência dos dados
+* Desenvolver métricas de negócio em SQL usando o Google BigQuery
+* Analisar o desempenho de vendas por tempo, produtos e mercados geográficos
+* Traduzir os resultados analíticos em um dashboard voltado para executivos
+* Organizar todo o processo analítico em um projeto de portfólio reproduzível
 
 ---
 
 # Dataset
 
-The project is based on the The Look E-commerce public dataset, provided through Google BigQuery.
+O projeto é baseado no dataset público The Look E-commerce, disponibilizado por meio do Google BigQuery.
 
-The dataset simulates an e-commerce business and contains information about customers, orders, products, order items, and related transactional data.
+O dataset simula um negócio de e-commerce e contém informações sobre clientes, pedidos, produtos, itens de pedido e outros dados transacionais relacionados.
 
-The data was organized into an analytical view named `vw_sales`, stored in the `analytics` dataset within Google BigQuery.
+Os dados foram organizados em uma view analítica chamada `vw_sales`, armazenada no dataset `analytics` dentro do Google BigQuery.
 
-### Dataset Overview
+### Visão Geral do Dataset
 
-| Attribute                   | Description                              |
-| --------------------------- | ---------------------------------------- |
-| Platform                    | Google BigQuery                          |
-| Dataset                     | `analytics`                              |
-| Analytical View             | `vw_sales`                               |
-| Main Measure                | `sale_price`                             |
-| Main Transaction Identifier | `order_id`                               |
-| Product Identifier          | `product_id`                             |
-| Customer Identifier         | `user_id`                                |
-| Order Status                | `status`                                 |
-| Time Dimension              | `year_month`                             |
-| Product Dimension           | `category`, `product_name`, `department` |
-| Geographic Dimension        | `country`, `state`, `city`               |
+| Atributo                       | Descrição                                |
+| ------------------------------ | ---------------------------------------- |
+| Plataforma                     | Google BigQuery                          |
+| Dataset                        | `analytics`                              |
+| View Analítica                 | `vw_sales`                               |
+| Medida Principal               | `sale_price`                             |
+| Identificador da Transação     | `order_id`                               |
+| Identificador do Produto       | `product_id`                             |
+| Identificador do Cliente       | `user_id`                                |
+| Status do Pedido               | `status`                                 |
+| Dimensão Temporal              | `year_month`                             |
+| Dimensão de Produto            | `category`, `product_name`, `department` |
+| Dimensão Geográfica            | `country`, `state`, `city`               |
 
-The analytical view provides the fields required to perform the business analysis and build the dashboard.
+A view analítica fornece os campos necessários para realizar a análise de negócio e construir o dashboard.
 
-### Data Coverage
+### Cobertura dos Dados
 
-The dataset covers multiple years of e-commerce activity and includes transactions across multiple countries and product categories.
+O dataset cobre vários anos de atividade de e-commerce e inclui transações em diversos países e categorias de produtos.
 
-For the business analysis presented in the dashboard, **completed orders (`status = 'Complete'`)** are used as the basis for revenue, order, and average-ticket calculations.
+Para a análise de negócio apresentada no dashboard, os **pedidos concluídos (`status = 'Complete'`)** são utilizados como base para os cálculos de receita, pedidos e ticket médio.
 
 ---
 
-# Analytics Workflow
+# Fluxo de Análise
 
-The project follows a structured analytical workflow:
+O projeto segue um fluxo analítico estruturado:
 
 ```text
-E-commerce Transactional Data
+Dados Transacionais de E-commerce
             │
             ▼
-     Data Profiling
+      Data Profiling
             │
             ▼
-   Data Quality Validation
+Validação da Qualidade dos Dados
             │
             ▼
-      Analytical Layer
+      Camada Analítica
         `vw_sales`
             │
             ▼
-       SQL Analysis
+        Análise SQL
             │
             ▼
-   Business Metrics
+    Métricas de Negócio
             │
             ▼
-   Executive Dashboard
+    Dashboard Executivo
 ```
 
 ### 1. Data Profiling
 
-The dataset was inspected to understand its structure, available fields, data types, temporal coverage, and potential data quality issues.
+O dataset foi inspecionado para compreender sua estrutura, os campos disponíveis, os tipos de dados, a cobertura temporal e possíveis problemas de qualidade dos dados.
 
-The profiling stage provided the foundation for subsequent validation and analysis.
+A etapa de profiling forneceu a base para a validação e a análise subsequentes.
 
-### 2. Data Quality Validation
+### 2. Validação da Qualidade dos Dados
 
-Data quality checks were performed before using the dataset for business analysis.
+Verificações de qualidade dos dados foram realizadas antes de utilizar o dataset na análise de negócio.
 
-The validation process included checks related to:
+O processo de validação incluiu verificações relacionadas a:
 
-* Record counts
-* Missing values
-* Duplicate records
-* Numerical fields
-* Temporal coverage
-* Referential integrity
-* Consistency between related datasets
+* Contagem de registros
+* Valores ausentes
+* Registros duplicados
+* Campos numéricos
+* Cobertura temporal
+* Integridade referencial
+* Consistência entre datasets relacionados
 
-### 3. Analytical Layer
+### 3. Camada Analítica
 
-The analytical view `vw_sales` was created to provide a structured and analysis-ready representation of the e-commerce data.
+A view analítica `vw_sales` foi criada para fornecer uma representação estruturada e pronta para análise dos dados de e-commerce.
 
-This layer consolidates the fields required for the business questions and dashboard metrics.
+Essa camada consolida os campos necessários para as perguntas de negócio e para as métricas do dashboard.
 
-### 4. SQL Business Analysis
+### 4. Análise de Negócio em SQL
 
-SQL queries were developed in BigQuery to calculate the metrics used throughout the project.
+Consultas SQL foram desenvolvidas no BigQuery para calcular as métricas utilizadas ao longo do projeto.
 
-The analysis focuses exclusively on the defined business questions and does not introduce unrelated indicators.
+A análise foca exclusivamente nas perguntas de negócio definidas e não introduz indicadores não relacionados.
 
-### 5. Dashboard Development
+### 5. Desenvolvimento do Dashboard
 
-The analytical results were transformed into an executive dashboard designed to provide a concise view of sales performance.
-
----
-
-# Business Questions
-
-The dashboard was designed around four analytical areas.
-
-## Executive Overview
-
-The dashboard provides three high-level KPIs:
-
-### Total Revenue
-
-What is the total revenue generated from completed orders?
-
-### Total Orders
-
-How many distinct completed orders were generated?
-
-### Average Ticket
-
-What is the average revenue generated per completed order?
+Os resultados analíticos foram transformados em um dashboard executivo, projetado para oferecer uma visão concisa do desempenho de vendas.
 
 ---
 
-## Business Growth
+# Perguntas de Negócio
 
-### Monthly Revenue Trend
+O dashboard foi projetado em torno de quatro áreas analíticas.
 
-How does revenue evolve over time?
+## Visão Geral Executiva
 
-### Monthly Orders Trend
+O dashboard apresenta três KPIs de alto nível:
 
-How does completed order volume evolve over time?
+### Receita Total
 
-These analyses provide a high-level view of the evolution of sales performance.
+Qual é a receita total gerada pelos pedidos concluídos?
 
----
+### Total de Pedidos
 
-## Product Performance
+Quantos pedidos concluídos distintos foram gerados?
 
-### Revenue by Category
+### Ticket Médio
 
-Which product categories generate the highest revenue?
-
-### Top Products by Revenue
-
-Which individual products generate the highest revenue?
-
-These analyses help identify the products and categories that contribute most to overall sales performance.
+Qual é a receita média gerada por pedido concluído?
 
 ---
 
-## Market Performance
+## Crescimento do Negócio
 
-### Revenue by Country
+### Tendência da Receita Mensal
 
-Which countries generate the highest revenue?
+Como a receita evolui ao longo do tempo?
 
-### Average Ticket by Country
+### Tendência de Pedidos Mensais
 
-How does average order value vary across different countries?
+Como o volume de pedidos concluídos evolui ao longo do tempo?
 
-These analyses provide a geographic perspective on sales performance.
+Essas análises fornecem uma visão de alto nível da evolução do desempenho de vendas.
 
 ---
 
-# Business Metrics
+## Desempenho de Produtos
 
-The dashboard metrics were defined using the following business rules.
+### Receita por Categoria
 
-### Total Revenue
+Quais categorias de produtos geram a maior receita?
+
+### Principais Produtos por Receita
+
+Quais produtos individuais geram a maior receita?
+
+Essas análises ajudam a identificar os produtos e categorias que mais contribuem para o desempenho geral de vendas.
+
+---
+
+## Desempenho de Mercado
+
+### Receita por País
+
+Quais países geram a maior receita?
+
+### Ticket Médio por País
+
+Como o valor médio dos pedidos varia entre os diferentes países?
+
+Essas análises fornecem uma perspectiva geográfica do desempenho de vendas.
+
+---
+
+# Métricas de Negócio
+
+As métricas do dashboard foram definidas usando as seguintes regras de negócio.
+
+### Receita Total
 
 ```sql
 SUM(sale_price)
 ```
 
-filtered to:
+filtrada por:
 
 ```sql
 status = 'Complete'
 ```
 
-### Total Orders
+### Total de Pedidos
 
 ```sql
 COUNT(DISTINCT order_id)
 ```
 
-filtered to:
+filtrado por:
 
 ```sql
 status = 'Complete'
 ```
 
-### Average Ticket
+### Ticket Médio
 
 ```sql
 SUM(sale_price) / COUNT(DISTINCT order_id)
 ```
 
-filtered to:
+filtrado por:
 
 ```sql
 status = 'Complete'
 ```
 
-### Revenue by Category
+### Receita por Categoria
 
 ```sql
 SUM(sale_price)
 ```
 
-grouped by:
+agrupada por:
 
 ```sql
 category
 ```
 
-and filtered to completed orders.
+e filtrada para pedidos concluídos.
 
-### Top Products by Revenue
+### Principais Produtos por Receita
 
 ```sql
 SUM(sale_price)
 ```
 
-grouped by:
+agrupada por:
 
 ```sql
 product_name
 ```
 
-with the analysis restricted to the top 10 products by revenue.
+com a análise restrita aos 10 principais produtos por receita.
 
-### Revenue by Country
+### Receita por País
 
 ```sql
 SUM(sale_price)
 ```
 
-grouped by:
+agrupada por:
 
 ```sql
 country
 ```
 
-and filtered to completed orders.
+e filtrada para pedidos concluídos.
 
-### Average Ticket by Country
+### Ticket Médio por País
 
 ```sql
 SUM(sale_price) / COUNT(DISTINCT order_id)
 ```
 
-grouped by:
+agrupado por:
 
 ```sql
 country
 ```
 
-and filtered to completed orders.
+e filtrado para pedidos concluídos.
 
-### Monthly Revenue
+### Receita Mensal
 
 ```sql
 SUM(sale_price)
 ```
 
-grouped by:
+agrupada por:
 
 ```sql
 year_month
 ```
 
-and filtered to completed orders.
+e filtrada para pedidos concluídos.
 
-### Monthly Orders
+### Pedidos Mensais
 
 ```sql
 COUNT(DISTINCT order_id)
 ```
 
-grouped by:
+agrupados por:
 
 ```sql
 year_month
 ```
 
-and filtered to completed orders.
+e filtrados para pedidos concluídos.
 
 ---
 
 # Dashboard
 
-The final dashboard is organized into three analytical sections.
+O dashboard final está organizado em três seções analíticas.
 
-## Executive Overview
+## Visão Geral Executiva
 
-The top-level KPIs provide a concise snapshot of:
+Os KPIs de nível superior fornecem um panorama conciso de:
 
-* Total Revenue
-* Total Orders
-* Average Ticket
-
----
-
-## Business Growth
-
-| Analysis              | Visualization |
-| --------------------- | ------------- |
-| Monthly Revenue Trend | Line Chart    |
-| Monthly Orders Trend  | Line Chart    |
-
-These visualizations allow users to identify changes in sales revenue and order volume over time.
+* Receita Total
+* Total de Pedidos
+* Ticket Médio
 
 ---
 
-## Product Performance
+## Crescimento do Negócio
 
-| Analysis                | Visualization        |
-| ----------------------- | -------------------- |
-| Revenue by Category     | Horizontal Bar Chart |
-| Top Products by Revenue | Horizontal Bar Chart |
+| Análise                    | Visualização     |
+| -------------------------- | ---------------- |
+| Tendência da Receita Mensal | Gráfico de Linha |
+| Tendência de Pedidos Mensais | Gráfico de Linha |
 
-These visualizations highlight the categories and products contributing most to revenue.
-
----
-
-## Market Performance
-
-| Analysis                  | Visualization        |
-| ------------------------- | -------------------- |
-| Revenue by Country        | Geographic Map       |
-| Average Ticket by Country | Horizontal Bar Chart |
-
-These visualizations provide a geographic perspective on both revenue concentration and average ticket behavior.
+Essas visualizações permitem identificar mudanças na receita de vendas e no volume de pedidos ao longo do tempo.
 
 ---
 
-# Key Insights
+## Desempenho de Produtos
 
-The dashboard was designed to support several types of business interpretation.
+| Análise                          | Visualização                |
+| -------------------------------- | --------------------------- |
+| Receita por Categoria            | Gráfico de Barras Horizontais |
+| Principais Produtos por Receita  | Gráfico de Barras Horizontais |
 
-### Revenue Performance
-
-The monthly revenue analysis allows decision-makers to identify periods of higher and lower sales performance and observe the overall evolution of revenue.
-
-### Product Performance
-
-Revenue by category and the top-product ranking reveal where sales revenue is concentrated across the product portfolio.
-
-### Geographic Performance
-
-The country-level revenue analysis highlights the markets contributing most to total revenue.
-
-### Customer Value by Market
-
-Average ticket by country provides a complementary perspective to total revenue, helping distinguish markets with high overall revenue from markets with higher average order value.
-
-> **Note:** The dashboard is intended as a decision-support tool. Individual metrics should be interpreted together rather than in isolation.
+Essas visualizações destacam as categorias e os produtos que mais contribuem para a receita.
 
 ---
 
-# Technologies
+## Desempenho de Mercado
 
-The project uses the following technologies and tools:
+| Análise                | Visualização                  |
+| ---------------------- | ----------------------------- |
+| Receita por País       | Mapa Geográfico               |
+| Ticket Médio por País  | Gráfico de Barras Horizontais |
 
-| Technology          | Purpose                                                           |
-| ------------------- | ----------------------------------------------------------------- |
-| **Google BigQuery** | Data storage, analytical layer, SQL analysis, and validation      |
-| **SQL**             | Data profiling, validation, transformation, and business analysis |
-| **Claude AI**       | Dashboard creation                                                |                               
-| **Git / GitHub**    | Version control and project documentation                         |
+Essas visualizações fornecem uma perspectiva geográfica tanto da concentração de receita quanto do comportamento do ticket médio.
 
 ---
 
-# Project Structure
+# Principais Insights
+
+O dashboard foi projetado para apoiar diversos tipos de interpretação de negócio.
+
+### Desempenho da Receita
+
+A análise da receita mensal permite que os tomadores de decisão identifiquem períodos de maior e menor desempenho de vendas e observem a evolução geral da receita.
+
+### Desempenho de Produtos
+
+A receita por categoria e o ranking dos principais produtos revelam onde a receita de vendas está concentrada no portfólio de produtos.
+
+### Desempenho Geográfico
+
+A análise de receita por país destaca os mercados que mais contribuem para a receita total.
+
+### Valor do Cliente por Mercado
+
+O ticket médio por país oferece uma perspectiva complementar à receita total, ajudando a distinguir mercados com alta receita geral de mercados com maior valor médio de pedido.
+
+> **Nota:** O dashboard é uma ferramenta de apoio à decisão. As métricas individuais devem ser interpretadas em conjunto, e não isoladamente.
+
+---
+
+# Tecnologias
+
+O projeto utiliza as seguintes tecnologias e ferramentas:
+
+| Tecnologia          | Finalidade                                                                  |
+| ------------------- | --------------------------------------------------------------------------- |
+| **Google BigQuery** | Armazenamento de dados, camada analítica, análise em SQL e validação        |
+| **SQL**             | Data profiling, validação, transformação e análise de negócio               |
+| **Claude AI**       | Criação do dashboard                                                        |
+| **Git / GitHub**    | Controle de versão e documentação do projeto                                |
+
+---
+
+# Estrutura do Projeto
 
 ```text
 E-commerce Sales Analytics
@@ -465,110 +465,110 @@ E-commerce Sales Analytics
 └── README.md
 ```
 
-> The structure above separates the analytical work, project documentation, visual assets, and technical evidence to keep the repository organized and reproducible.
+> A estrutura acima separa o trabalho analítico, a documentação do projeto, os ativos visuais e as evidências técnicas, para manter o repositório organizado e reproduzível.
 
 ---
 
-# Documentation
+# Documentação
 
-The repository contains supporting documentation covering the main stages of the project.
+O repositório contém documentação de apoio que cobre as principais etapas do projeto.
 
-### Business Context
+### Contexto de Negócio
 
-Describes the business scenario, objectives, and analytical questions that guided the project.
+Descreve o cenário de negócio, os objetivos e as perguntas analíticas que guiaram o projeto.
 
-**[View Business Context](Documentos/business_context.md)**
+**[Ver Contexto de Negócio](Documentos/business_context.md)**
 
-### Data Model
+### Modelo de Dados
 
-Documents the structure and relationships of the analytical data.
+Documenta a estrutura e os relacionamentos dos dados analíticos.
 
-**[View Data Model](Documentos/data_model.md)**
+**[Ver Modelo de Dados](Documentos/data_model.md)**
 
 ### Data Profiling
 
-Documents the initial inspection and profiling of the dataset.
+Documenta a inspeção inicial e o profiling do dataset.
 
-**[View Data Profiling](Documentos/data_profiling.md)**
+**[Ver Data Profiling](Documentos/data_profiling.md)**
 
-### Analytical Layer
+### Camada Analítica
 
-Documents the analytical layer and the construction of `vw_sales`.
+Documenta a camada analítica e a construção da `vw_sales`.
 
-**[View Analytical Layer](Documentos/analytical_layer.md)**
+**[Ver Camada Analítica](Documentos/analytical_layer.md)**
 
 ---
 
-# Technical Evidence
+# Evidências Técnicas
 
-The repository also contains screenshots documenting the technical implementation in Google BigQuery.
+O repositório também contém capturas de tela que documentam a implementação técnica no Google BigQuery.
 
-### Project & Dataset
+### Projeto e Dataset
 
 `01_project_dataset.png`
 
-Demonstrates the BigQuery project, dataset, and location of the analytical view.
+Demonstra o projeto no BigQuery, o dataset e a localização da view analítica.
 
-### Analytical View
+### View Analítica
 
 `02_analytical_view.png`
 
-Shows the schema of `vw_sales`, including the fields and data types used throughout the analysis.
+Mostra o schema da `vw_sales`, incluindo os campos e os tipos de dados utilizados ao longo da análise.
 
-### Analytical Layer Definition
+### Definição da Camada Analítica
 
 `03_vw_sales_definition.png`
 
-Show the SQL code used to create the analytical layer `vw_sales`
+Mostra o código SQL usado para criar a camada analítica `vw_sales`.
 
-### SQL Analysis
+### Análise SQL
 
 `04_sql_query.png`
 
-Shows a representative business query executed against `vw_sales` and its resulting output.
+Mostra uma consulta de negócio representativa executada na `vw_sales` e seu resultado.
 
-### Data Validation
+### Validação dos Dados
 
 `05_validation.png`
 
-Shows a representative data quality validation query and its results.
+Mostra uma consulta representativa de validação da qualidade dos dados e seus resultados.
 
-These evidences provide a visual record of the analytical environment and demonstrate how the business analysis was performed in BigQuery.
+Essas evidências fornecem um registro visual do ambiente analítico e demonstram como a análise de negócio foi realizada no BigQuery.
 
 ---
 
-# Analytical Approach
+# Abordagem Analítica
 
-A key principle throughout the project was to separate **data preparation, analytical logic, and visualization**.
+Um princípio fundamental ao longo do projeto foi separar **preparação dos dados, lógica analítica e visualização**.
 
-The dashboard does not directly operate on an unstructured transactional dataset.
+O dashboard não opera diretamente sobre um dataset transacional não estruturado.
 
-Instead, the workflow follows:
+Em vez disso, o fluxo segue:
 
 ```text
-Transactional Data
+Dados Transacionais
        ↓
-Data Validation
+Validação dos Dados
        ↓
-Analytical View
+View Analítica
        ↓
-Business Logic
+Lógica de Negócio
        ↓
-SQL Metrics
+Métricas SQL
        ↓
 Dashboard
 ```
 
-This separation improves transparency, maintainability, and reproducibility of the analysis.
+Essa separação melhora a transparência, a manutenibilidade e a reprodutibilidade da análise.
 
 ---
 
-# Conclusion
+# Conclusão
 
-This project demonstrates an end-to-end **data analytics workflow applied to an e-commerce business context**.
+Este projeto demonstra um **fluxo de análise de dados de ponta a ponta aplicado a um contexto de negócio de e-commerce**.
 
-Starting from transactional data, the project progresses through data profiling, quality validation, analytical modeling, SQL-based business analysis, and executive visualization.
+Partindo de dados transacionais, o projeto avança por data profiling, validação de qualidade, modelagem analítica, análise de negócio baseada em SQL e visualização executiva.
 
-The final dashboard provides a consolidated view of revenue performance, order volume, product performance, and geographic market performance, translating the underlying data into a format suitable for business analysis and decision support.
+O dashboard final fornece uma visão consolidada do desempenho da receita, do volume de pedidos, do desempenho de produtos e do desempenho de mercados geográficos, traduzindo os dados subjacentes em um formato adequado para análise de negócio e apoio à decisão.
 
-The project also documents the technical process behind the analysis, allowing the analytical reasoning, SQL logic, and data validation steps to be independently reviewed.
+O projeto também documenta o processo técnico por trás da análise, permitindo que o raciocínio analítico, a lógica SQL e as etapas de validação de dados sejam revisados de forma independente.
